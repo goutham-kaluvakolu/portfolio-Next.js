@@ -2,7 +2,7 @@
 
 const Navbar = () => {
   return (
-    <nav className="fixed top-0 w-full bg-gray-800 text-white py-4">
+    <nav className="fixed top-0 w-full bg-gray-800 text-white py-4 h-16">
       <ul className="flex justify-center space-x-4">
         <li>
           <a href="#experience" className="hover:underline" >
