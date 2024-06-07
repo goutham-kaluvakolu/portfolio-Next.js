@@ -1,6 +1,6 @@
 
 
-import { DESCRIPTION, LINKEDIN, SOCIALS, X } from '@/config'
+import { DESCRIPTION, SOCIALS} from '@/config'
 import Image from 'next/image'
 const Me = ({ image, name }: { image: string, name: string }) => {
     return (

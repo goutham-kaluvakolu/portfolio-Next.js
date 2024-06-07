@@ -1,18 +1,16 @@
-import { DESCRIPTION } from '@/config'
-import Link from 'next/link'
 import React from 'react'
 
 type projectCardProps = { name: string, html_url: string, description: string, created_at: string, homepage: string, topics: string[] }
 
 const ProjectCard = ({ name, html_url, description, created_at, homepage, topics }: projectCardProps) => {
     return (
-        <div className="w-1/4 p-6 bg-white border border-gray-200 rounded-lg shadow  ">
+        <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-6 m-2 bg-white border border-gray-200 rounded-lg shadow" style={{minWidth: '300px', maxWidth: '500px', minHeight: '300px'}}>
             <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 ">{name}</h5>
-            <p className="mb-3 font-normal text-gray-500 ">{description}</p>
-            <div className='flex flex-wrap space-x-2'>
+            <p className="mb-3 font-normal text-gray-500 overflow-hidden ">{description}</p>
+            <div className='flex flex-wrap'>
                 {
                     topics.length > 0 && topics.map((i) => {
-                        return <span className="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded m-3">{i}</span>
+                        return <span key={i} className="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded m-3">{i}</span>
                     })
                 }
             </div>

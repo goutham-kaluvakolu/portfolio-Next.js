@@ -56,13 +56,13 @@ const ProjectsMiniSection = ({ mod_array }: { mod_array: { [key: string]: Array<
     <div className=''>
       {x.map((topic: string) => (
 
-        mod_array[topic].length == 0 ? <div id={topic}> <div className='text-center w-full h-64'>
+        mod_array[topic].length == 0 ? <div id={topic} key={topic}> <div className='text-center w-full h-64' key={topic}>
           nothing here
         </div></div> :
-          <div id={topic} className='flex flex-wrap space-x-4 m-10'>
+          <div id={topic} className='flex flex-wrap m-10'>
             {mod_array[topic].map((project) => {
               return (
-                <ProjectCard name={project.name} html_url={project.html_url} description={project.description} topics={project.topics} created_at={project.created_at} homepage={project.homepage} />
+                <ProjectCard key={project.name} name={project.name} html_url={project.html_url} description={project.description} topics={project.topics} created_at={project.created_at} homepage={project.homepage} />
               )
             })}
           </div>

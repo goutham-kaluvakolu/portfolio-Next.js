@@ -10,19 +10,12 @@ import Exp from "@/components/Exp";
 
 export default async function Home() {
   async function getItem() {
-    // The `fetch` function is automatically memoized and the result
-    // is cached
     const res = await fetch(`https://api.github.com/users/${USER_NAME}/repos?sort=updated&direction=desc`, { cache: 'no-store' })
-    //see the res and loop though each item
-
-    // console.log("***",res.json())
     return res.json()
   }
   const item = await getItem()
   const image = item[0].owner.avatar_url
   const name = item[0].owner.login
-  const description = item[0].description
-  const socials = item[0].html_url
 
   //make an arrat of json objects ,each json object is a project and it has name,description,html_url,topics,created_at,homepage
 
@@ -53,7 +46,6 @@ export default async function Home() {
 
   });
 
-  // console.log("****",mod_array)
 
   return (
     <div className="transparent">
@@ -77,19 +69,6 @@ export default async function Home() {
           <Projects projects={item} mod_array={mod_array} />
         </section>
       </div>
-      <video autoPlay loop className={" w-full h-full object-cover"}>
-        {/* vidoe is in public folder named as background.mp4 */}
-        <source src="/background.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-      <video width="400" controls>
-        <source src="/background.mp4" type="video/mp4" />
-        Your browser does not support HTML video.
-      </video>
-
-
-
-
     </div>
   );
 
