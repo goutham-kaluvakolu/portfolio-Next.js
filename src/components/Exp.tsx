@@ -1,15 +1,15 @@
 
 const Exp = () => {
   return (
-    <div>
-      <h1>
+    <div className="m-10">
+      <h1 className="text-3xl font-bold">
         Full Stack Software Developer
       </h1>
-      <p>
-        MiQ · Internship   </p>
-      <p>Nov 2020 - Sep 2021 · 11 mosNov 2020 to Sep 2021 · 11 mos</p>
-      <p>Bangalore Urban, Karnataka, India · On-siteBangalore Urban, Karnataka, India · On-site</p>
-      <ul>
+      <p className="text-xl text-slate-600">
+       <a href="https://wearemiq.com/" target="_blank" className="text-red-600">MiQ</a>  · Internship   </p>
+      <p className="text-slate-600 text-sm">Nov 2020 - Sep 2021 · 11 mosNov 2020 to Sep 2021 · 11 mos</p>
+      <p className="text-slate-600 text-sm">Bangalore Urban, Karnataka, India · On-site</p>
+      <ul className="list-disc m-5">
         <li>{`Contributed to the conversion of the applications UI to a new, optimized design, resulting in improved user experience.`}</li>
         <li>Overhauled legacy code to recent React code while adhering to best coding practices, resulting in increased maintainability.</li>
         <li>Implemented 3 forms dependent on API calls and stored their information and selections in Redux.</li>

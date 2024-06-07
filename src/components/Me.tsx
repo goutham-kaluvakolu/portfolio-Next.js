@@ -4,7 +4,7 @@ import { DESCRIPTION, SOCIALS} from '@/config'
 import Image from 'next/image'
 const Me = ({ image, name }: { image: string, name: string }) => {
     return (
-        <div className='flex flex-col items-center m-20'>
+        <div className='flex flex-col items-center mt-20'>
             {/* photo */}
             {/* show image using next image */}
             {/* border-radius: 120px; */}

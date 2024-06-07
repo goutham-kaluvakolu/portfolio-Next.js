@@ -38,10 +38,12 @@ export default Projects;
 const ProjectsNav = ({ mod_array }: { mod_array: { [key: string]: Array<any> } }) => {
   let x = Object.keys(mod_array)
   return (
-    <div className='flex space-x-4 justify-center sticky top-16 mt-16 bg-white' style={{backdropFilter: "blur(0px)",
-    transition: "backdrop-filter 300ms",}}>
+    <div className='flex space-x-4 justify-center sticky top-16 mt-16 bg-white h-12 items-center' style={{
+      backdropFilter: "blur(0px)",
+      transition: "backdrop-filter 300ms",
+    }}>
       {x.map((topic: string) => (
-        <a key={topic} href={`#${topic}`}>
+        <a key={topic} href={`#${topic}`} className='hover:underline'>
           {topic}
         </a>
       ))}
@@ -59,10 +61,15 @@ const ProjectsMiniSection = ({ mod_array }: { mod_array: { [key: string]: Array<
         mod_array[topic].length == 0 ? <div id={topic} key={topic}> <div className='text-center w-full h-64' key={topic}>
           nothing here
         </div></div> :
-          <div id={topic} key={topic} className='flex flex-wrap m-10'>
+          <div  key={topic} className='flex flex-wrap md:m-10 border-b-2 pb-5'>
+            <div id={topic} className='w-full font-bold text-2xl scroll-mt-48 m-2 mt-4'>
+              {topic}
+            </div>
             {mod_array[topic].map((project) => {
               return (
-                <ProjectCard key={project.name} name={project.name} html_url={project.html_url} description={project.description} topics={project.topics} created_at={project.created_at} homepage={project.homepage} />
+                
+                  <ProjectCard key={project.name} name={project.name} html_url={project.html_url} description={project.description} topics={project.topics} created_at={project.created_at} homepage={project.homepage} />
+                  
               )
             })}
           </div>

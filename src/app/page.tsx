@@ -53,18 +53,18 @@ export default async function Home() {
 
       <Me image={image} name={name} />
       <div className="pt-16"> {/* Add padding to prevent content from being hidden behind the navbar */}
-        <section id="education" className="min-h-screen bg-gray-100 p-8">
+        <section id="education" className="bg-gray-100 p-8  scroll-mt-16">
           <h1 className="text-3xl font-bold">Education</h1>
           {/* <Navbar/> */}
           <Edu />
         </section>
 
-        <section id="experience" className="min-h-screen bg-gray-200 p-8">
+        <section id="experience" className="min-h-screen bg-gray-200 p-8  scroll-mt-16">
           <h1 className="text-3xl font-bold">Experience</h1>
           <Exp />
         </section>
 
-        <section id="projects" className="min-h-screen bg-gray-300 p-8">
+        <section id="projects" className="min-h-screen bg-gray-300 p-8  scroll-mt-16">
           {/* {loading ? <div>Loading...</div> : <Projects projects={projects} />} */}
           <Projects projects={item} mod_array={mod_array} />
         </section>
