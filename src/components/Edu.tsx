@@ -1,9 +1,10 @@
 
 const Edu = () => {
   return (
-    <div>
-
-      <ol className="relative border-s border-gray-200 m-10">
+    <div className="max-w-3xl mx-auto py-12 px-4">
+      <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">Education</h2>
+      <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+      <ol className=" relative border-s border-gray-200 m-10">
         <li className="mb-10 ms-4">
           <div>
           <div className="absolute w-3 h-3 bg-gray-500 rounded-full mt-1.5 -start-1.5 border border-white "></div>
@@ -28,7 +29,7 @@ const Edu = () => {
           </svg></a>
         </li>
       </ol>
-
+      </div>
     </div>
   )
 }

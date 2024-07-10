@@ -1,48 +1,46 @@
-
-
-import { DESCRIPTION, SOCIALS} from '@/config'
+import { DESCRIPTION, SOCIALS } from '@/config'
 import Image from 'next/image'
+
 const Me = ({ image, name }: { image: string, name: string }) => {
     return (
-        <div className='flex flex-col items-center mt-20'>
-            {/* photo */}
-            {/* show image using next image */}
-            {/* border-radius: 120px; */}
-            <Image className='rounded-full'
-                src={image}
-                width={240}
-                height={240}
-                alt="Picture of the author"
-            />
-            {/* full name*/}
-            <h1 className='text-3xl font-bold m-4'>{formatName(name)}</h1>
-            {/* description */}
-            <div className='text-center text-slate-500 m-2'>{DESCRIPTION}</div>
-            {/* social media links */}
-            <div className='flex space-x-4 m-2'>
-                {
-                    SOCIALS.map((social) => (
-                        <a key={social.name} href={social.url} target="_blank" rel="noopener noreferrer">
-                            {getIcon(social.name)}
-                        </a>
-                    ))
-                }
+        <div className='flex flex-col items-center max-w-2xl mx-auto p-12'>
+            <div className='relative w-60 h-60 mb-8'>
+
+                <Image
+                    className='rounded-full shadow-lg'
+
+                    src={image}
+                    alt="User Avatar"
+                    width={500}
+                    height={500}
+                    style={{ objectFit: "cover" }}
+                />
 
             </div>
+            <h1 className='text-4xl font-bold mb-4 text-gray-800'>{formatName(name)}</h1>
+            <p className='text-center text-lg text-gray-600 mb-6 leading-relaxed'>{DESCRIPTION}</p>
+            <div className='flex space-x-6'>
+                {SOCIALS.map((social) => (
+                    <a
+                        key={social.name}
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className='text-gray-600 hover:text-gray-900 transition-colors duration-300'
+                    >
+                        {getIcon(social.name)}
+                    </a>
+                ))}
+            </div>
         </div>
-
     )
 }
 
 export default Me
 
-
 const formatName = (name: string) => {
-    const formatedName = name.split("-").join(" ").toUpperCase()
-    return formatedName
+    return name.split("-").join(" ").toUpperCase()
 }
-
-
 
 const getIcon = (name: string) => {
     switch (name) {
@@ -61,14 +59,14 @@ const getIcon = (name: string) => {
         case "LinkedIn":
             return (
                 <span className="[&>svg]:h-5 [&>svg]:w-5">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 448 512">
-                  <path
-                    d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z" />
-                </svg>
-              </span>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 448 512">
+                        <path
+                            d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z" />
+                    </svg>
+                </span>
             )
         case "X":
             return (
