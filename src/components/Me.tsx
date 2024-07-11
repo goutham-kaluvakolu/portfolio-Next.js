@@ -5,10 +5,8 @@ const Me = ({ image, name }: { image: string, name: string }) => {
     return (
         <div className='flex flex-col items-center max-w-2xl mx-auto p-12'>
             <div className='relative w-60 h-60 mb-8'>
-
                 <Image
                     className='rounded-full shadow-lg'
-
                     src={image}
                     alt="User Avatar"
                     width={500}

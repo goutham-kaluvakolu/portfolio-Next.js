@@ -42,9 +42,9 @@ export default async function Home() {
   });
 
   return (
-    <div className="flex">
+<div className="flex">
       <Navbar />
-      <main className="flex-1 ml-64 "> {/* Add ml-64 to offset the navbar width */}
+      <main className="flex-1 ml-64 bg-gray-100"> {/* Add ml-64 to offset the navbar width */}
         <section id="contact" className="scroll-mt-16">
           <Me image={image} name={name} />
         </section>
@@ -62,6 +62,7 @@ export default async function Home() {
         </section>
       </main>
     </div>
+    
   );
 
 
