@@ -41,29 +41,26 @@ export default async function Home() {
 
   });
 
-
   return (
-    <div className="transparent">
+    <div className="flex">
       <Navbar />
-
-      <div className="pt-16">
-        <section id="contact" className=" p-8  scroll-mt-16">
+      <main className="flex-1 ml-64 "> {/* Add ml-64 to offset the navbar width */}
+        <section id="contact" className="scroll-mt-16">
           <Me image={image} name={name} />
         </section>
-        <section id="education" className=" p-8  scroll-mt-16">
+        <section id="education" className="scroll-mt-16">
           <Edu />
         </section>
-        <section id="experience" className="min-h-screen  p-8  scroll-mt-16">
+        <section id="experience" className="min-h-screen scroll-mt-16">
           <Exp />
         </section>
-        <section id="projects" className="min-h-screen  p-8  scroll-mt-16">
+        <section id="projects" className="min-h-screen scroll-mt-16">
           <Projects projects={item} mod_array={mod_array} />
         </section>
-        <section id="projects" className="min-h-screen  p-8  scroll-mt-16">
+        <section id="skills" className="min-h-screen scroll-mt-16">
           <Skills />
         </section>
-      </div>
-
+      </main>
     </div>
   );
 

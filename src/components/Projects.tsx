@@ -52,7 +52,7 @@ const ProjectsNav = ({ mod_array }: { mod_array: { [key: string]: Array<any> } }
   const topics = Object.keys(mod_array);
 
   return (
-    <nav className='sticky w-full top-16 mt-16 bg-white py-4 shadow-lg z-10 backdrop-blur-sm overflow-x-auto'>
+    <nav className='sticky rounded-full w-full h-12 top-2 bg-white py-4 shadow-lg z-10 backdrop-blur-sm overflow-x-auto overflow-y-hidden opacity-80'>
       <div className='flex justify-center space-x-2 px-4'>
         {topics.map((topic) => (
           <Link key={topic} href={`#${topic}`} passHref>
@@ -82,8 +82,9 @@ const ProjectsMiniSection = ({ mod_array }: { mod_array: { [key: string]: Array<
               No projects in this category
             </div>
           ) : (
-            <div className='bg-white rounded-lg shadow-xl overflow-hidden'>
-              <h2 id={topic} className='w-full font-bold text-2xl scroll-mt-48 p-6'>
+            <div id={topic}>
+            <div className='bg-white rounded-lg shadow-xl overflow-hidden mt-16 scroll-mt-16' >
+              <h2  className='w-full font-bold text-2xl p-6 pt-16 '>
                 {topic}
               </h2>
               <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6'>
@@ -104,6 +105,7 @@ const ProjectsMiniSection = ({ mod_array }: { mod_array: { [key: string]: Array<
                   </div>
                 ))}
               </div>
+            </div>
             </div>
           )}
         </div>
