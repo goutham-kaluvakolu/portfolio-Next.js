@@ -17,8 +17,8 @@ const Navbar = () => {
         </svg>
       </button>
       <nav className={`no-scrollbar fixed left-0 top-0 h-full w-64 bg-white/80 backdrop-blur-sm shadow-lg z-40 overflow-y-auto transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 hide-scrollbar`}>
-        <div className="flex h-full justify-center py-8 ">
-          <ul className="space-y-4 flex flex-col justify-center">
+        <div className="flex h-full md:justify-center py-8 px-8 ">
+          <ul className="space-y-4 flex flex-col md:justify-center">
             {['Contact', 'Education', 'Experience', 'Projects', 'Skills'].map((item) => (
               <li key={item} className='mx-4'>
                 <Link href={`#${item}`}>
