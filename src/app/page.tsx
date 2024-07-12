@@ -1,4 +1,3 @@
-
 import { USER_NAME } from "@/config";
 import Navbar from "../components/Navbar";
 import Projects from "../components/Projects";
@@ -6,8 +5,6 @@ import Me from "@/components/Me";
 import Edu from "@/components/Edu";
 import Exp from "@/components/Exp";
 import Skills from "@/components/Skills";
-
-
 
 export default async function Home() {
   async function getItem() {
@@ -18,14 +15,12 @@ export default async function Home() {
   const image = item[0].owner.avatar_url
   const name = item[0].owner.login
 
-
   const mod_items = item.map((item: { name: string, description: string, html_url: string, topics: string, created_at: string, homepage: string }) => {
     return { name: item.name, description: item.description, html_url: item.html_url, topics: item.topics, created_at: item.created_at, homepage: item.homepage }
   })
 
   let mod_array: { [key: string]: Array<any> } = { "Web Development": [], "AI": [], "Software Engineering": [], "Misc": [] };
   mod_items.forEach((element: { name: string, description: string, html_url: string, topics: string, created_at: string, homepage: string }) => {
-
     if (element.topics.includes("webdev")) {
       mod_array["Web Development"].push(element);
     }
@@ -38,13 +33,12 @@ export default async function Home() {
     if (!element.topics.includes("webdev") && !element.topics.includes("ai") && !element.topics.includes("software")) {
       mod_array["Misc"].push(element);
     }
-
   });
 
   return (
-<div className="flex">
+    <div className="flex flex-col md:flex-row">
       <Navbar />
-      <main className="flex-1 ml-64 bg-gray-100"> {/* Add ml-64 to offset the navbar width */}
+      <main className="flex-1 mr-0 bg-gray-100"> {/* Changed ml-64 to md:ml-64 */}
         <section id="contact" className="scroll-mt-16">
           <Me image={image} name={name} />
         </section>
@@ -62,8 +56,5 @@ export default async function Home() {
         </section>
       </main>
     </div>
-    
   );
-
-
 }
