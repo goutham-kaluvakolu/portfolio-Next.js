@@ -40,19 +40,19 @@ export default async function Home() {
     <div className="flex flex-col md:flex-row">
       <Navbar />
       <main className="flex-1 md:ml-64 bg-gray-100">
-        <section id="contact" className="scroll-mt-16 pt-16 md:pt-0">
+        <section id="Contact" className="scroll-mt-16 pt-16 md:pt-0">
           <Me image={image} name={name} />
         </section>
-        <section id="education" className="scroll-mt-16">
+        <section id="Education" className="">
           <Edu />
         </section>
-        <section id="experience" className="min-h-screen scroll-mt-16">
+        <section id="Experience" className="min-h-screen">
           <Exp />
         </section>
-        <section id="projects" className="min-h-screen scroll-mt-16">
+        <section id="Projects" className="min-h-screen">
           <Projects projects={item} mod_array={mod_array} />
         </section>
-        <section id="skills" className="min-h-screen scroll-mt-16">
+        <section id="Skills" className="min-h-screen">
           <Skills />
         </section>
       </main>
