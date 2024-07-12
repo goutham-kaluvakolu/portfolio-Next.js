@@ -35,11 +35,12 @@ export default async function Home() {
     }
   });
 
+
   return (
     <div className="flex flex-col md:flex-row">
       <Navbar />
-      <main className="flex-1 mr-0 bg-gray-100"> {/* Changed ml-64 to md:ml-64 */}
-        <section id="contact" className="scroll-mt-16">
+      <main className="flex-1 md:ml-64 bg-gray-100">
+        <section id="contact" className="scroll-mt-16 pt-16 md:pt-0">
           <Me image={image} name={name} />
         </section>
         <section id="education" className="scroll-mt-16">
