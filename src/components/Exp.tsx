@@ -2,10 +2,13 @@ const Exp = () => {
   return (
     <div className="max-w-4xl mx-auto py-12 px-4">
       <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">Experience</h2>
-      <div className="bg-white shadow-lg rounded-lg overflow-hidden">
-        <div className="p-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-2">
-            Full Stack Software Developer
+      <div className="md:flex md:space-between">
+        
+        {expData.map((data, index) =>  (
+          <div className="p-8 bg-white shadow-lg rounded-lg overflow-hidden m-4">
+          <div>
+            <h2 className="text-3xl font-bold text-gray-800 mb-2">
+            {data.role}
           </h2>
           <div className="flex items-center mb-4">
             <a 
@@ -14,17 +17,17 @@ const Exp = () => {
               rel="noopener noreferrer" 
               className="text-xl font-semibold text-blue-600 hover:text-blue-800 transition-colors duration-300"
             >
-              MiQ
+              {data.client}
             </a>
             <span className="mx-2 text-gray-400">·</span>
-            <span className="text-lg text-gray-600">Internship</span>
+            {/* <span className="text-lg text-gray-600">Internship</span> */}
           </div>
           <div className="text-sm text-gray-500 mb-6">
-            <p>Nov 2020 - Sep 2021 · 11 mos</p>
-            <p>Bangalore Urban, Karnataka, India · On-site</p>
+            <p>{data.timeLine}</p>
+            <p></p>
           </div>
           <ul className="space-y-4 text-gray-700">
-            {experiencePoints.map((point, index) => (
+            {data.experiencePoints.map((point, index) => (
               <li key={index} className="flex items-start">
                 <svg className="w-6 h-6 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
@@ -34,22 +37,54 @@ const Exp = () => {
             ))}
           </ul>
         </div>
+        </div>
+        ))}
+          
       </div>
     </div>
   )
 }
 
-const experiencePoints = [
-  "Developed and launched a white-label version of the core application for two major clients, expanding market reach and driving a 20% increase in annual revenue.",
-  "Spearheaded a major codebase modernization initiative, converting 100+ React class components to functional components with hooks, resulting in a 20% improvement in application performance and 15% reduction in bundle size",
-  "Engineered a high-performance RESTful API using React, Java Spring Boot, and AWS S3, enabling secure PDF downloads of campaign details, resulting in a 40% faster data retrieval for campaigns as PDF and demonstrating expertise in microservices architecture",
-  "Developed a custom reusable component library, adopted by 4 internal teams, collaborating with UX/UI designersto improve visual consistency and streamline new feature development across multiple projects.",
-  "Architected complex interdependent forms for a new dashboard feature using React and Redux, resulting in a 45% increase in campaign creation efficiency",
-  "Implemented an automated testing suite using Selenium and JUnit, achieving 80% test coverage for critical paths and reducing production bugs by 60%.",
-  "Managed bug tracking and resolution across 10+ application instances, utilizing Jenkins for CI/CD in an Agile Scrum environment, resulting in a 35% decrease in reported issues.",
-  "Designed and implemented new RESTful endpoints using Java Spring Boot, expanding application functionalityand data analysis capabilities for improved decision-making.",
-  "Engineered efficient data retrieval and UI enhancements using Angular, implementing search functionality andpagination for complex data tables, improving user experience and application performance.",
-  "Authored comprehensive technical documentation for onboarding and APIs, reducing new developer ramp-up time by 30% and decreasing integration errors by 25% across Windows, React, and Java Spring Boot environments."
-];
+const expData = [
+  {
+    role: "Full Stack Software Developer",
+    client: "Molina Healthcare",
+    timeLine: "Sep 2023 - Present · ~ 1 yr",
+    location:"USA · Remote",
+    experiencePoints: [
+      "Spearheaded the development of a novice patient management system, resulting in a 60% reduction in data retrieval time, and a 35% increase in user satisfaction scores",
+      "Orchestrated microservices using Spring Boot and Docker, resulting in a 30% increase in application scalability and a 25% reduction in deployment time",
+      "Engineered RESTful APIs, processing over 1 million requests per day with 99.9% uptime",
+      "Optimized database queries and implemented caching mechanisms, leading to a 40% reduction in application response time",
+      "Built responsive and intuitive user interfaces using Angular, improving the application's accessibility score from 75% to 95%",
+      "Collaborated with the QA team to implement automated testing using JUnit and Selenium, increasing test coverage by 40% and reducing bug detection time by 50%",
+      "Guided a team of 5 developers in adopting best practices for code reviews and documentation, resulting in a 30% decrease in post-release defects",
+      "Established CI/CD pipelines using Jenkins and AWS, reducing deployment time from 2 hours to 15 minutes",
+      "Conducted knowledge-sharing sessions on advanced Java concepts and design patterns, improving team productivity by 25%",
+      "Integrated third-party APIs for insurance claim processing, streamlining the workflow and reducing manual data entry by 70%"
+    ]
+
+  },
+  {
+    role: "Full Stack Software Developer",
+    client: "C-Edge Technologies",
+    timeLine: "Jul 2020 - Jun 2022 · 1 yr 11 mos",
+    location:"Bangalore Urban, Karnataka, India · On-site",
+    experiencePoints: [
+      "Developed and maintained Java-based web applications for banking clients, serving over 500,000 daily active users",
+      "Crafted responsive front-end designs using HTML5, CSS3, and JavaScript, improving mobile user experience by 40%",
+      "Collaborated with a team of 8 developers to redesign the core banking module, resulting in a 25% increase in transaction processing speed",
+      "Enhanced database performance through advanced SQL query refinement and strategic indexing, accelerating high-volume transactions by 35% and handling 10,000+ daily patient records efficiently",
+      "Contributed to the development of a real-time fraud detection system using Java and machine learning algorithms, preventing an estimated $2 million in fraudulent transactions annually",
+      "Implemented unit testing practices using JUnit, increasing code coverage from 60% to 85% and reducing post-release bugs by 30%",
+      "Mentored 2 junior developers, improved team code quality and reduced technical debt by 20%",
+      "Integrated payment gateway APIs, enabling secure transactions for over 1 million customers",
+      "Authored comprehensive technical documentation, reducing onboarding time for new team members by 50%",
+      "Participated in Agile ceremonies, contributing to sprint planning and retrospectives, which led to a 15% increase in team velocity"
+    ]
+    
+  }
+]
+
 
 export default Exp;

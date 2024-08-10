@@ -1,4 +1,5 @@
-import React, { memo } from 'react';
+"use client";
+import React, { memo, useState } from 'react';
 import Link from 'next/link';
 import ProjectCard from './ProjectCard';
 
@@ -12,7 +13,20 @@ type ProjectProps = {
   topics: string[]
 }
 
+
+
 const Projects = ({ projects, mod_array, error }: { projects: ProjectProps[], mod_array: { [key: string]: Array<any> }, error?: string }) => {
+  const topicsForDisplay = Object.keys(mod_array);
+  const hash: { [key: string]: boolean } = {};
+  topicsForDisplay.forEach((topic: string) => {
+    hash[topic] = true
+  })
+
+  const [displayState, setDisplayState] = useState({
+    ...hash,
+  });
+  console.log("displayState", displayState);
+
   if (error) {
     return (
       <div className="flex justify-center items-center h-screen bg-gray-100">
@@ -40,8 +54,8 @@ const Projects = ({ projects, mod_array, error }: { projects: ProjectProps[], mo
           Projects
         </h1>
         <MemoizedProjectsNav mod_array={mod_array} />
-        <div className='mt-24'>
-          <MemoizedProjectsMiniSection mod_array={mod_array} />
+        <div className=''>
+          <MemoizedProjectsMiniSection mod_array={mod_array} displayState={displayState} setDisplayState={setDisplayState} />
         </div>
       </div>
     </div>
@@ -52,7 +66,7 @@ const ProjectsNav = ({ mod_array }: { mod_array: { [key: string]: Array<any> } }
   const topics = Object.keys(mod_array);
 
   return (
-    <nav className='sticky rounded-full w-full h-12 top-2 bg-white py-4 shadow-lg z-10 backdrop-blur-sm overflow-x-auto overflow-y-hidden opacity-80'>
+    <nav className='hidden md:block sticky rounded-full w-full h-14 top-2 bg-white py-4 shadow-lg z-10 backdrop-blur-sm overflow-x-auto overflow-y-hidden opacity-80'>
       <div className='flex justify-center space-x-2 px-4'>
         {topics.map((topic) => (
           <Link key={topic} href={`#${topic}`} passHref>
@@ -66,47 +80,63 @@ const ProjectsNav = ({ mod_array }: { mod_array: { [key: string]: Array<any> } }
   )
 }
 
-const ProjectsMiniSection = ({ mod_array }: { mod_array: { [key: string]: Array<any> } }) => {
+const ProjectsMiniSection = ({ mod_array, displayState, setDisplayState }: { mod_array: { [key: string]: Array<any> } }) => {
   const topics = Object.keys(mod_array);
-
   return (
-    <div className="space-y-16">
+    <div className="scroll-mt-16">
       {topics.map((topic, index) => (
-        <div 
+        <div
           key={topic}
-          className="fade-in-section"
-          style={{animationDelay: `${index * 0.1}s`}}
+          id={topic}
+          className="fade-in-section md:pt-24 pt-8"
+          style={{ animationDelay: `${index * 0.1}s` }}
         >
           {mod_array[topic].length === 0 ? (
             <div id={topic} className='text-center w-full h-64 flex items-center justify-center text-gray-500 bg-white rounded-lg shadow-xl'>
               No projects in this category
             </div>
           ) : (
-            <div id={topic}>
-            <div className='bg-white rounded-lg shadow-xl overflow-hidden mt-16 scroll-mt-16' >
-              <h2  className='w-full font-bold text-2xl p-6 pt-16 '>
-                {topic}
-              </h2>
-              <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6'>
-                {mod_array[topic].map((project, projectIndex) => (
-                  <div 
-                    key={project.name}
-                    className="fade-in-section"
-                    style={{animationDelay: `${(index * 0.1) + (projectIndex * 0.05)}s`}}
-                  >
-                    <ProjectCard 
-                      name={project.name} 
-                      html_url={project.html_url} 
-                      description={project.description} 
-                      topics={project.topics} 
-                      created_at={project.created_at} 
-                      homepage={project.homepage} 
-                    />
+              <div className='bg-white rounded-lg shadow-xl overflow-hidden ' >
+                <h2 className='w-full font-bold text-2xl p-6 cursor-pointer flex' onClick={() => setDisplayState({ ...displayState, [topic]: !displayState[topic] })}>
+                  <span className='mr-4'>
+                    {displayState[topic] ? (
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+                      </svg>
+
+                    ) : (
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                      </svg>
+
+                    )}
+                  </span>
+
+
+                  {topic}
+                </h2>
+                {displayState[topic] && (
+                  <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6'>
+                    {mod_array[topic].map((project, projectIndex) => (
+                      <div
+                        key={project.name}
+                        className="fade-in-section"
+                        style={{ animationDelay: `${(index * 0.1) + (projectIndex * 0.05)}s` }}
+                      >
+                        <ProjectCard
+                          name={project.name}
+                          html_url={project.html_url}
+                          description={project.description}
+                          topics={project.topics}
+                          created_at={project.created_at}
+                          homepage={project.homepage}
+                        />
+                      </div>
+                    ))}
                   </div>
-                ))}
+                )}
+
               </div>
-            </div>
-            </div>
           )}
         </div>
       ))}

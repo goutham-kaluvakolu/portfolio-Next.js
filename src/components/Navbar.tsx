@@ -22,7 +22,7 @@ const Navbar = () => {
             {['Contact', 'Education', 'Experience', 'Projects', 'Skills'].map((item) => (
               <li key={item} className='mx-4'>
                 <Link href={`#${item}`}>
-                  <span className='block px-4 py-2 rounded-full text-gray-900 hover:text-gray-900 hover:bg-gray-200 transition-colors duration-300 whitespace-nowrap cursor-pointer'>
+                  <span className='block px-4 py-2 rounded-full text-gray-900 hover:text-gray-900 hover:bg-gray-200 transition-colors duration-300 whitespace-nowrap cursor-pointer' onClick={toggleMenu}>
                     {item}
                   </span>
                 </Link>
