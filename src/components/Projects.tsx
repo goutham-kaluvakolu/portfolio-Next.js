@@ -80,7 +80,7 @@ const ProjectsNav = ({ mod_array }: { mod_array: { [key: string]: Array<any> } }
   )
 }
 
-const ProjectsMiniSection = ({ mod_array, displayState, setDisplayState }: { mod_array: { [key: string]: Array<any> } }) => {
+const ProjectsMiniSection = ({ mod_array, displayState, setDisplayState }: { mod_array: { [key: string]: Array<any> } , displayState: { [key: string]: boolean }, setDisplayState: React.Dispatch<React.SetStateAction<{ [key: string]: boolean }>>}) => {
   const topics = Object.keys(mod_array);
   return (
     <div className="scroll-mt-16">
@@ -100,12 +100,12 @@ const ProjectsMiniSection = ({ mod_array, displayState, setDisplayState }: { mod
                 <h2 className='w-full font-bold text-2xl p-6 cursor-pointer flex' onClick={() => setDisplayState({ ...displayState, [topic]: !displayState[topic] })}>
                   <span className='mr-4'>
                     {displayState[topic] ? (
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
                       </svg>
 
                     ) : (
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                       </svg>
 
