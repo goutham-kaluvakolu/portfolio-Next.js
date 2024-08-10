@@ -1,7 +1,7 @@
 export const USER_NAME="goutham-kaluvakolu"
 export const LINKEDIN="https://www.linkedin.com/in/goutham-kumar-reddy-kaluvakolu"
 export const X="https://x.com/SUPREME01846841"
-export const DESCRIPTION="Software Engineer, who loves to bring ideas to life. I do it mostly using JS, and PY."
+export const DESCRIPTION="Software Engineer, who loves to bring ideas to life. I do it mostly using JAVA, JS, and PY."
 export const EMAIL="gHlT3@example.com"
 export const INSTAGRAM="https://www.instagram.com/supreme01846841/"
 export const GITHUB = "https://github.com/goutham-kaluvakolu"

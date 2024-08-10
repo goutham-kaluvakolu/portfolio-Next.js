@@ -29,7 +29,7 @@ const skillsData = [
 const Skills = () => {
     const half = Math.ceil(skillsData.length / 2);
     return (
-        <div className="min-h-screen p-4 sm:p-8">
+        <div className="= p-4 sm:p-8">
             <div className="max-w-7xl mx-auto">
                 <h1 className="text-4xl font-bold text-center mb-12 text-gray-800 ">
                     Skills

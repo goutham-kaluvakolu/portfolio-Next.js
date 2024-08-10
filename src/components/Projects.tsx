@@ -83,12 +83,12 @@ const ProjectsNav = ({ mod_array }: { mod_array: { [key: string]: Array<any> } }
 const ProjectsMiniSection = ({ mod_array, displayState, setDisplayState }: { mod_array: { [key: string]: Array<any> } , displayState: { [key: string]: boolean }, setDisplayState: React.Dispatch<React.SetStateAction<{ [key: string]: boolean }>>}) => {
   const topics = Object.keys(mod_array);
   return (
-    <div className="scroll-mt-16">
+    <div className="">
       {topics.map((topic, index) => (
         <div
           key={topic}
           id={topic}
-          className="fade-in-section md:pt-24 pt-8"
+          className="fade-in-section pt-8"
           style={{ animationDelay: `${index * 0.1}s` }}
         >
           {mod_array[topic].length === 0 ? (
@@ -96,8 +96,8 @@ const ProjectsMiniSection = ({ mod_array, displayState, setDisplayState }: { mod
               No projects in this category
             </div>
           ) : (
-              <div className='bg-white rounded-lg shadow-xl overflow-hidden ' >
-                <h2 className='w-full font-bold text-2xl p-6 cursor-pointer flex' onClick={() => setDisplayState({ ...displayState, [topic]: !displayState[topic] })}>
+              <div className='bg-white rounded-lg shadow-xl overflow-hidden p-12' >
+                <h2 className='w-full font-bold text-2xl p-6 cursor-pointer flex items-center ' onClick={() => setDisplayState({ ...displayState, [topic]: !displayState[topic] })}>
                   <span className='mr-4'>
                     {displayState[topic] ? (
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-6">
@@ -111,8 +111,6 @@ const ProjectsMiniSection = ({ mod_array, displayState, setDisplayState }: { mod
 
                     )}
                   </span>
-
-
                   {topic}
                 </h2>
                 {displayState[topic] && (

@@ -46,13 +46,13 @@ export default async function Home() {
         <section id="Education" className="">
           <Edu />
         </section>
-        <section id="Experience" className="min-h-screen">
+        <section id="Experience" >
           <Exp />
         </section>
         <section id="Projects" className="min-h-screen">
           <Projects projects={item} mod_array={mod_array} />
         </section>
-        <section id="Skills" className="min-h-screen">
+        <section id="Skills" >
           <Skills />
         </section>
       </main>

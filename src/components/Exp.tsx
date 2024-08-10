@@ -1,13 +1,34 @@
+"use client";
+import { useState } from "react";
+
 const Exp = () => {
+  const [visibility, setVisibility] = useState<{[key: string]: boolean}>({
+    "molina": false,
+    "ctech":false
+  });
+
   return (
     <div className="max-w-4xl mx-auto py-12 px-4">
       <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">Experience</h2>
-      <div className="md:flex md:space-between">
+      <div>
         
         {expData.map((data, index) =>  (
           <div className="p-8 bg-white shadow-lg rounded-lg overflow-hidden m-4" key={index}>
           <div>
-            <h2 className="text-3xl font-bold text-gray-800 mb-2">
+            <h2 className="text-3xl font-bold text-gray-800 mb-2 flex items-center">
+            <div onClick={() => setVisibility({ ...visibility, [data.id]: !visibility[data.id] })} className="mr-4">
+          {visibility[data.id] ? (
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+                      </svg>
+
+                    ) : (
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                      </svg>
+
+                    )}
+          </div>
             {data.role}
           </h2>
           <div className="flex items-center mb-4">
@@ -26,16 +47,21 @@ const Exp = () => {
             <p>{data.timeLine}</p>
             <p></p>
           </div>
-          <ul className="space-y-4 text-gray-700">
-            {data.experiencePoints.map((point, index) => (
-              <li key={index} className="flex items-start">
-                <svg className="w-6 h-6 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span>{point}</span>
-              </li>
-            ))}
-          </ul>
+         
+          
+          {visibility[data.id] && (
+              <ul className="space-y-4 text-gray-700">
+              {data.experiencePoints.map((point, index) => (
+                <li key={index} className="flex items-start">
+                  <svg className="w-6 h-6 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        
         </div>
         </div>
         ))}
@@ -47,6 +73,7 @@ const Exp = () => {
 
 const expData = [
   {
+    id:"molina",
     role: "Full Stack Software Developer",
     client: "Molina Healthcare",
     timeLine: "Sep 2023 - Present · ~ 1 yr",
@@ -66,6 +93,7 @@ const expData = [
 
   },
   {
+    id :"ctech",
     role: "Full Stack Software Developer",
     client: "C-Edge Technologies",
     timeLine: "Jul 2020 - Jun 2022 · 1 yr 11 mos",
