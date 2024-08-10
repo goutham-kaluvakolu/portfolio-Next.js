@@ -5,7 +5,7 @@ const Exp = () => {
       <div className="md:flex md:space-between">
         
         {expData.map((data, index) =>  (
-          <div className="p-8 bg-white shadow-lg rounded-lg overflow-hidden m-4">
+          <div className="p-8 bg-white shadow-lg rounded-lg overflow-hidden m-4" key={index}>
           <div>
             <h2 className="text-3xl font-bold text-gray-800 mb-2">
             {data.role}
