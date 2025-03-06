@@ -65,8 +65,8 @@ const Navbar = () => {
 
     const observer = new IntersectionObserver(observerCallback, {
       root: null,
-      rootMargin: "0px",
-      threshold: 0.5,
+      rootMargin: "-100px 0px -100px 0px",
+      threshold: 0.3,
     });
 
     // Observe all sections
@@ -81,9 +81,67 @@ const Navbar = () => {
     };
   }, []);
 
+  // Check active section on initial load and window resize
+  useEffect(() => {
+    const checkActiveSection = () => {
+      // Find the most visible section
+      let mostVisibleSection = "";
+      let maxVisibility = 0;
+      
+      navItems.forEach((item) => {
+        const sectionId = item.href.replace("#", "");
+        const element = document.getElementById(sectionId);
+        if (!element) return;
+        
+        const rect = element.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        
+        // Calculate how much of the element is visible (as a percentage)
+        const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
+        const visiblePercentage = visibleHeight / rect.height;
+        
+        if (visiblePercentage > maxVisibility) {
+          maxVisibility = visiblePercentage;
+          mostVisibleSection = sectionId;
+        }
+      });
+      
+      // Only update if we found a visible section and it's different from current
+      if (mostVisibleSection && mostVisibleSection !== activeSection) {
+        setActiveSection(mostVisibleSection);
+      }
+    };
+    
+    // Initial check after a short delay to ensure rendering is complete
+    const timer = setTimeout(checkActiveSection, 300);
+    
+    // Check on window resize
+    window.addEventListener('resize', checkActiveSection);
+    
+    // Check on scroll, but throttle it to avoid performance issues
+    let scrollTimeout: NodeJS.Timeout;
+    const handleScroll = () => {
+      if (scrollTimeout) clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(checkActiveSection, 100);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', checkActiveSection);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [navItems, activeSection]); // Add dependencies to prevent infinite loop
+
   const handleNavClick = (href: string) => {
     const targetId = href.replace("#", "");
     const targetElement = document.getElementById(targetId);
+    
+    // Set active section immediately (only if it's different)
+    if (targetId !== activeSection) {
+      setActiveSection(targetId);
+    }
     
     if (targetElement) {
       targetElement.scrollIntoView({ behavior: "smooth" });
