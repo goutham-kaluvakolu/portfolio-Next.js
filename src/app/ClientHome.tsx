@@ -43,9 +43,9 @@ export default function ClientHome({ image, name, projects, mod_array }: ClientH
           transition={{ duration: 0.5 }}
           className="bg-gray-900"
         >
-          <div className="main-content px-4 py-8 max-w-6xl mx-auto">
+          <div className="main-content px-4 py-4 max-w-6xl mx-auto">
             <Suspense fallback={<LoadingSkeleton type="me" />}>
-              <section id="Contact" className="scroll-mt-16 sm:pt-0">
+              <section id="Contact" className="scroll-mt-12">
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -66,7 +66,7 @@ export default function ClientHome({ image, name, projects, mod_array }: ClientH
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="scroll-mt-16 py-8"
+                className="scroll-mt-12 py-4"
               >
                 <Edu />
               </motion.section>
@@ -79,7 +79,7 @@ export default function ClientHome({ image, name, projects, mod_array }: ClientH
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="scroll-mt-16 py-8"
+                className="scroll-mt-12 py-4"
               >
                 <Exp />
               </motion.section>
@@ -92,12 +92,12 @@ export default function ClientHome({ image, name, projects, mod_array }: ClientH
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="scroll-mt-16 py-8"
+                className="scroll-mt-12 py-4"
               >
                 {projects && projects.length > 0 ? (
                   <Projects projects={projects} mod_array={mod_array || {}} />
                 ) : (
-                  <div className="max-w-5xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+                  <div className="max-w-5xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
                     <div className="text-center">
                       <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
                         GitHub Projects
@@ -118,7 +118,7 @@ export default function ClientHome({ image, name, projects, mod_array }: ClientH
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="scroll-mt-16 py-8 pb-16"
+                className="scroll-mt-12 py-4 pb-8"
               >
                 <Skills />
               </motion.section>

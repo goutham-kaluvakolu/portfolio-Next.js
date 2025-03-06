@@ -3,6 +3,7 @@ import React, { memo, useState, useEffect } from 'react';
 import Link from 'next/link';
 import ProjectCard from './ProjectCard';
 import { motion, AnimatePresence } from "framer-motion";
+import { useProjectContext } from "@/lib/ProjectContext";
 
 type ProjectProps = {
   homepage: string;
@@ -15,24 +16,31 @@ type ProjectProps = {
 }
 
 const Projects = ({ projects, mod_array, error }: { projects: ProjectProps[], mod_array: { [key: string]: Array<any> }, error?: string }) => {
-  const topicsForDisplay = Object.keys(mod_array);
-  const [expandedSections, setExpandedSections] = useState<{ [key: string]: boolean }>({});
-  const [activeSection, setActiveSection] = useState<string>(topicsForDisplay[0] || 'Web Development');
-
-  // useEffect(() => {
-   
-  // }, [activeSection]);
-
-  const handleSectionClick = (section: string) => {
-    setActiveSection(section);
-  };
-
-  const toggleSection = (section: string) => {
-    setExpandedSections(prev => ({
-      ...prev,
-      [section]: !prev[section]
-    }));
-  };
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const { setCategories } = useProjectContext();
+  
+  // Memoize the categories array so it doesn't change on every render
+  const categories = React.useMemo(() => 
+    ["All", ...Object.keys(mod_array)],
+    [mod_array]
+  );
+  
+  // Update the context when mod_array changes
+  useEffect(() => {
+    setCategories(categories);
+  }, [setCategories, categories]);
+  
+  // Generate all projects for the "All" category
+  const allProjects = React.useMemo(() => 
+    Object.values(mod_array).flat(),
+    [mod_array]
+  );
+  
+  // Get projects to display based on selected category
+  const displayedProjects = selectedCategory === "All" 
+    ? allProjects 
+    : mod_array[selectedCategory] || [];
 
   if (error) {
     return (
@@ -55,7 +63,7 @@ const Projects = ({ projects, mod_array, error }: { projects: ProjectProps[], mo
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black py-16 px-4 sm:px-6 lg:px-8">
+    <div id="Projects" className="min-h-screen bg-gradient-to-b from-gray-900 to-black py-8 px-4 sm:px-6 lg:px-8">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -66,143 +74,135 @@ const Projects = ({ projects, mod_array, error }: { projects: ProjectProps[], mo
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="text-center mb-12"
+          className="text-center mb-6"
         >
           <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">Projects</span>
           </h2>
-          <p className="mt-4 text-lg text-gray-400">
+          <p className="mt-2 text-lg text-gray-400">
             Explore my latest work and contributions
           </p>
         </motion.div>
 
-        <nav className="sticky top-2 z-50 bg-transparent">
-          <div className="bg-gray-800/95 backdrop-blur-sm rounded-full shadow-xl px-4 py-3 mx-auto max-w-3xl border border-gray-700/50 my-4 hover:border-gray-600/80 transition-all duration-300">
-            <div className="flex justify-center py-2 overflow-x-auto no-scrollbar">
-              {topicsForDisplay.map((topic) => {
-                console.log('Checking topic:', topic, activeSection);
-                if (activeSection === topic) {
-                  console.log('Active Section:', topic);
-                }
-                return (
-                  <Link key={topic} href={`#${topic}`} passHref onClick={() => handleSectionClick(topic)}>
-                    <motion.span 
-                      whileHover={{ scale: activeSection === topic ? 1.05 : 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                      className={`px-4 mx-2 py-2 rounded-full transition-all duration-300 whitespace-nowrap cursor-pointer text-sm font-medium
-                      ${activeSection === topic 
-                        ? 'text-white bg-gradient-to-r from-blue-600 to-blue-500 shadow-lg shadow-blue-500/20' 
-                        : 'text-gray-300 hover:text-white hover:bg-gray-700/80'
-                      }`}>
-                      {topic}
-                    </motion.span>
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-        </nav>
-
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          className="space-y-12 mt-12"
-        >
-          {topicsForDisplay.map((topic, index) => (
-            <motion.div
-              key={topic}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 * index }}
-              className="scroll-mt-32"
-            >
-              <div id={topic} className="h-16 -mt-16 mb-4 invisible"></div>
-              <div 
-                className="project-section bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl shadow-xl overflow-hidden border border-gray-700 hover:border-gray-600 transition-all duration-300"
-              >
-                <div
-                  className="p-6 cursor-pointer hover:bg-gray-800/80 transition-all duration-300"
-                  onClick={() => toggleSection(topic)}
+        {/* Category Dropdown in the Secondary Navbar */}
+        <nav className="sticky top-2 z-40 bg-transparent mb-4">
+          <div className="flex justify-end px-1">
+            <div className="bg-gray-800/95 backdrop-blur-sm rounded-lg shadow-xl px-5 py-3 max-w-md w-full sm:w-64 border border-gray-700/50 hover:border-gray-600/80 transition-all duration-300">
+              <div className="relative">
+                <button
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  className="flex items-center justify-between w-full px-3 py-2 bg-gray-900 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
                 >
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-2xl font-bold text-white flex items-center space-x-3 group">
-                      <span className="group-hover:text-blue-400 transition-colors duration-300">{topic}</span>
-                      <motion.div
-                        className="bg-gray-700 rounded-full p-1.5 text-gray-300 group-hover:bg-blue-500 group-hover:text-white transition-colors duration-300"
-                      >
-                        <motion.svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-4 w-4"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          animate={{ rotate: expandedSections[topic] ? 180 : 0 }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M19 9l-7 7-7-7"
-                          />
-                        </motion.svg>
-                      </motion.div>
-                    </h3>
-                    <span className="text-sm font-medium px-3 py-1 bg-gray-700/50 rounded-full text-blue-300">
-                      {mod_array[topic].length} projects
-                    </span>
-                  </div>
-                </div>
+                  <span className="flex items-center">
+                    <span className="ml-2 truncate font-medium">{selectedCategory}</span>
+                  </span>
+                  <span className="ml-2 text-xs bg-gray-800 px-2 py-1 rounded-full">
+                    {selectedCategory === "All" 
+                      ? allProjects.length 
+                      : mod_array[selectedCategory]?.length || 0} projects
+                  </span>
+                  <svg 
+                    className={`w-5 h-5 ml-2 text-gray-400 transition-transform duration-300 ${isDropdownOpen ? 'transform rotate-180' : ''}`} 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    viewBox="0 0 20 20" 
+                    fill="currentColor" 
+                    aria-hidden="true"
+                  >
+                    <path 
+                      fillRule="evenodd" 
+                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" 
+                      clipRule="evenodd" 
+                    />
+                  </svg>
+                </button>
 
+                {/* Dropdown Menu */}
                 <AnimatePresence>
-                  {expandedSections[topic] && (
+                  {isDropdownOpen && (
                     <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="border-t border-gray-700"
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute z-10 w-full mt-1 bg-gray-800 border border-gray-700 rounded-md shadow-lg max-h-60 overflow-y-auto"
                     >
-                      <div className="p-6 bg-gray-800/30">
-                        {mod_array[topic].length === 0 ? (
-                          <div className="text-center py-10 text-gray-400 bg-gray-800/20 rounded-lg border border-gray-700">
-                            No projects in this category yet
-                          </div>
-                        ) : (
-                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {mod_array[topic].map((project, projectIndex) => (
-                              <motion.div
-                                key={project.name}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{
-                                  delay: 0.1 * projectIndex,
-                                  duration: 0.3
-                                }}
-                                whileHover={{ y: -5 }}
-                                className="transition-all duration-300"
-                              >
-                                <ProjectCard
-                                  name={project.name}
-                                  html_url={project.html_url}
-                                  description={project.description}
-                                  topics={project.topics}
-                                  created_at={project.created_at}
-                                  homepage={project.homepage}
-                                />
-                              </motion.div>
-                            ))}
-                          </div>
-                        )}
-                      </div>
+                      <ul className="py-1">
+                        {categories.map((category) => (
+                          <li key={category}>
+                            <button
+                              onClick={() => {
+                                setSelectedCategory(category);
+                                setIsDropdownOpen(false);
+                              }}
+                              className={`block w-full text-left px-4 py-2.5 text-sm hover:bg-gray-700 ${
+                                selectedCategory === category 
+                                  ? 'bg-blue-600 text-white' 
+                                  : 'text-gray-300'
+                              }`}
+                            >
+                              <div className="flex items-center justify-between">
+                                <span>{category}</span>
+                                <span className="ml-2 text-xs bg-gray-700 px-1.5 py-0.5 rounded-full">
+                                  {category === "All" 
+                                    ? allProjects.length 
+                                    : mod_array[category]?.length || 0}
+                                </span>
+                              </div>
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
                     </motion.div>
                   )}
                 </AnimatePresence>
               </div>
-            </motion.div>
-          ))}
+            </div>
+          </div>
+        </nav>
+
+        {/* Projects Grid */}
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.4 }}
+          className="mt-8"
+        >
+          {displayedProjects.length === 0 ? (
+            <div className="text-center py-20 text-gray-400 bg-gray-800/20 rounded-lg border border-gray-700">
+              No projects in this category yet
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <AnimatePresence mode="popLayout">
+                {displayedProjects.map((project, projectIndex) => (
+                  <motion.div
+                    key={`${project.name}-${projectIndex}`}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    layout
+                    transition={{
+                      layout: { type: "spring", bounce: 0.3 },
+                      opacity: { duration: 0.3 },
+                      delay: 0.05 * (projectIndex % 6), // Limit the max delay for larger lists
+                      duration: 0.3
+                    }}
+                    whileHover={{ y: -5 }}
+                    className="transition-all duration-300"
+                  >
+                    <ProjectCard
+                      name={project.name}
+                      html_url={project.html_url}
+                      description={project.description}
+                      topics={project.topics}
+                      created_at={project.created_at}
+                      homepage={project.homepage}
+                    />
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </div>
+          )}
         </motion.div>
       </motion.div>
     </div>
