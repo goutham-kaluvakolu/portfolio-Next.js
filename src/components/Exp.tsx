@@ -13,13 +13,13 @@ const Exp = () => {
       company: "KGS Tech",
       location: "Texas, USA",
       description: [
-        "Contributed to the design and implementation of microservices for a next-generation patient management system using Java, Spring Boot, and React, reducing average data retrieval time by 60% through optimized database queries and Redis caching mechanisms."
-"Developed and optimized RESTful APIs with Spring Boot during migration from legacy systems, identifying performance bottlenecks in slow APIs and implementing solutions including query optimization, caching strategies, and asynchronous processing, supporting up to 10,000 daily requests with 99% uptime."
-"Integrated third-party payment and insurance APIs with comprehensive Swagger/OpenAPI documentation, automating claim processing workflows and reducing manual data entry by 70%."
-"Integrated Python-based AI microservices for predictive analytics and automated patient risk scoring, enhancing clinical decision support and demonstrating cross-language integration within a Java-based healthcare ecosystem."
-"Engineered responsive, accessible user interfaces with React, Redux, and ES6+, improving accessibility scores from 75% to 95% and ensuring WCAG 2.1 compliance for healthcare regulatory standards."
-"Implemented comprehensive test automation frameworks using JUnit, Selenium, and PyTest, increasing test coverage by 40% and accelerating defect detection by 50% across the patient management platform."
-"Built and deployed containerized microservices on AWS (EC2, Lambda, S3) using Docker, improving system scalability by 30% and supporting seamless deployment of multiple services across development and production environments."
+        "Contributed to the design and implementation of microservices for a next-generation patient management system using Java, Spring Boot, and React, reducing average data retrieval time by 60% through optimized database queries and Redis caching mechanisms.",
+"Developed and optimized RESTful APIs with Spring Boot during migration from legacy systems, identifying performance bottlenecks in slow APIs and implementing solutions including query optimization, caching strategies, and asynchronous processing, supporting up to 10,000 daily requests with 99% uptime.",
+"Integrated third-party payment and insurance APIs with comprehensive Swagger/OpenAPI documentation, automating claim processing workflows and reducing manual data entry by 70%.",
+"Integrated Python-based AI microservices for predictive analytics and automated patient risk scoring, enhancing clinical decision support and demonstrating cross-language integration within a Java-based healthcare ecosystem.",
+"Engineered responsive, accessible user interfaces with React, Redux, and ES6+, improving accessibility scores from 75% to 95% and ensuring WCAG 2.1 compliance for healthcare regulatory standards.",
+"Implemented comprehensive test automation frameworks using JUnit, Selenium, and PyTest, increasing test coverage by 40% and accelerating defect detection by 50% across the patient management platform.",
+"Built and deployed containerized microservices on AWS (EC2, Lambda, S3) using Docker, improving system scalability by 30% and supporting seamless deployment of multiple services across development and production environments.",
       ]
     },
     {
