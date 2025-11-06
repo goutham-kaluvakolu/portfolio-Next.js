@@ -36,7 +36,7 @@ const Exp = () => {
         "Re-designed the scalable backend infrastructure (JWT, OAuth 2.0) to process and display location status (e.g., 'Entered Home Zone') rather than continuous coordinates on the real-time circle status dashboard, aligning the feature set with a strong user privacy model.",
         "Developed a multi-user circle management system supporting unlimited members with role-based permissions, dynamic admin controls (add/remove, revoke), automatic admin handoff on departure, and optional solo tracking mode."
       ]
-    }
+    },
     {
       id: 3,
       period: "Nov 2024 –  Present",
@@ -51,7 +51,7 @@ const Exp = () => {
         "Engineered Docker-containerized deployment pipeline with automated health monitoring and one-command setup scripts, reducing deployment time by 90% and enabling seamless team collaboration.",
         "Designed four-mode system architecture (Chat, Database, Visualization, Strategy) supporting cross-platform data connectivity for retail POS, e-commerce, and advertising analytics, delivering real-time business intelligence capabilities."
     ]
-    }
+    },
     {
       id: 4,
       period: "Nov 2020 – Sept 2021",
