@@ -8,37 +8,69 @@ const Exp = () => {
   const experiences = [
     {
       id: 1,
-      period: "Sep 2023 – Current",
+      period: "May 2025 - Sept 2025",
       role: "Full Stack Java Developer",
-      company: "Molina Healthcare",
+      company: "KGS Tech",
       location: "Texas, USA",
       description: [
-        "Spearheaded the design and implementation of an AI-powered patient management system, incorporating machine learning algorithms for predictive analytics and automated decision support, reducing data retrieval time by 60% and improving diagnostic accuracy by 40%.",
-        "Architected and deployed a microservices infrastructure using Spring Boot and Docker, implementing advanced service mesh patterns and automated scaling policies, improving application scalability by 30% and reducing deployment cycles by 75%.",
-        "Developed a predictive analytics module using TensorFlow and Spring Boot, incorporating advanced machine learning models, achieving 85% accuracy in patient readmission risk assessment.",
-        "Engineered automated load balancing and scaling solutions with robust health checking and failover mechanisms, maintaining 99.9% uptime for applications processing over 1 million daily requests.",
-        "Designed and developed responsive user interfaces with Angular, integrating AI-driven user behavior analytics, resulting in a 45% improvement in user experience.",
-        "Established comprehensive MLOps practices for continuous model training and deployment, reducing model update time from days to hours while ensuring consistent performance.",
-        "Implemented an AI-powered claims processing system using NLP and automated validation rules, reducing manual review time by 70% through intelligent document processing.",
-        "Developed real-time monitoring dashboards using React and D3.js, providing 360-degree visibility into system performance through interactive and intuitive interfaces."
+        "Contributed to the design and implementation of microservices for a next-generation patient management system using Java, Spring Boot, and React, reducing average data retrieval time by 60% through optimized database queries and Redis caching mechanisms."
+"Developed and optimized RESTful APIs with Spring Boot during migration from legacy systems, identifying performance bottlenecks in slow APIs and implementing solutions including query optimization, caching strategies, and asynchronous processing, supporting up to 10,000 daily requests with 99% uptime."
+"Integrated third-party payment and insurance APIs with comprehensive Swagger/OpenAPI documentation, automating claim processing workflows and reducing manual data entry by 70%."
+"Integrated Python-based AI microservices for predictive analytics and automated patient risk scoring, enhancing clinical decision support and demonstrating cross-language integration within a Java-based healthcare ecosystem."
+"Engineered responsive, accessible user interfaces with React, Redux, and ES6+, improving accessibility scores from 75% to 95% and ensuring WCAG 2.1 compliance for healthcare regulatory standards."
+"Implemented comprehensive test automation frameworks using JUnit, Selenium, and PyTest, increasing test coverage by 40% and accelerating defect detection by 50% across the patient management platform."
+"Built and deployed containerized microservices on AWS (EC2, Lambda, S3) using Docker, improving system scalability by 30% and supporting seamless deployment of multiple services across development and production environments."
       ]
     },
     {
       id: 2,
-      period: "July 2020 – Jun 2022",
-      role: "Java Developer",
-      company: "C-Edge Technologies",
-      location: "India",
-      description: [
-        "Architected and implemented an AI-based fraud detection system using Java and machine learning algorithms, preventing over $2M in fraudulent transactions annually with 95% accuracy.",
-        "Engineered high-performance RESTful APIs serving 500,000+ daily users, implementing caching strategies and connection pooling, reducing response time by 45%.",
-        "Developed an automated transaction classification system leveraging NLP and machine learning, achieving 90% accuracy and reducing manual categorization effort by 75%.",
-        "Designed real-time anomaly detection using machine learning models, reducing false positive alerts by 60% through intelligent alert filtering.",
-        "Created an intelligent chatbot system utilizing NLP and machine learning, successfully handling 40% of routine customer queries.",
-        "Executed database performance optimization using intelligent indexing strategies, caching mechanisms, and connection pooling, reducing data retrieval time by 35%.",
-        "Led implementation of automated testing frameworks, incorporating continuous integration practices, increasing code coverage to 85% and reducing post-release issues by 30%."
+      period: "Nov 2024 –  Present",
+      role: "Founding Developer",
+      company: "Third I AI",
+      location: "Remote",
+      description: 
+      [
+        "Safe Circle - Privacy-First Safety Monitoring Mobile Application (Android/iOS)",
+        "Architected and developed a cross-platform location-based safety application using React Native and Expo, implementing a privacy-first Geofencing and SLD (Significant Location Change Detection) architecture. This ensures event-based safety monitoring instead of continuous tracking, reducing data collection volume.",
+        "Engineered a power-optimized location service leveraging OS-native Geofencing APIs for accurate entry/exit detection of designated safe zones. This replacement of the custom velocity-based system improved detection reliability and reduced device battery consumption by over 60%.",
+        "Re-designed the scalable backend infrastructure (JWT, OAuth 2.0) to process and display location status (e.g., 'Entered Home Zone') rather than continuous coordinates on the real-time circle status dashboard, aligning the feature set with a strong user privacy model.",
+        "Developed a multi-user circle management system supporting unlimited members with role-based permissions, dynamic admin controls (add/remove, revoke), automatic admin handoff on departure, and optional solo tracking mode."
       ]
     }
+    {
+      id: 3,
+      period: "Nov 2024 –  Present",
+      role: "Founding Developer",
+      company: "Third I AI",
+      location: "Remote",
+      description: 
+     [
+       "AURA - AI-Powered Enterprise Data Analysis Platform",
+        "Co-founded and architected an enterprise-grade 'Analyst in a Box' platform providing universal database connectivity across 12+ data sources including PostgreSQL, MongoDB, Snowflake, BigQuery, and Databricks.",
+        "Developed microservices architecture using FastAPI backend and React TypeScript frontend, integrating Google Gemini AI for natural language queries and achieving interactive data analysis with Chart.js visualizations.",
+        "Engineered Docker-containerized deployment pipeline with automated health monitoring and one-command setup scripts, reducing deployment time by 90% and enabling seamless team collaboration.",
+        "Designed four-mode system architecture (Chat, Database, Visualization, Strategy) supporting cross-platform data connectivity for retail POS, e-commerce, and advertising analytics, delivering real-time business intelligence capabilities."
+    ]
+    }
+    {
+      id: 4,
+      period: "Nov 2020 – Sept 2021",
+      role: "Software Development Engineer",
+      company: "Miq Digital",
+      location: "India, Remote",
+      description: [
+  "Expanded market reach and drove a 20% increase in Annual Recurring Revenue (ARR) by developing two white-label versions for major clients.",
+  "Spearheaded codebase modernization, converting over 100 React class components to functional components with Hooks, resulting in a 20% improvement in application performance and a 15% reduction in bundle size.",
+  "Engineered high-performance RESTful APIs using Java Spring Boot and AWS S3 to manage complex business logic, including secure, on-demand PDF generation and streaming.",
+  "Developed a custom, reusable React component library adopted by four internal teams, collaborating with UX/UI to enhance consistency and streamline feature development.",
+  "Architected complex, data-driven forms using React/Redux to manage interdependent state, implementing debouncing and chained API calls, which increased campaign creation efficiency by 45%.",
+  "Implemented a robust automated testing suite (Selenium/JUnit), achieving 80% test coverage for critical paths and reducing production bugs by 60%.",
+  "Introduced and implemented server-side and client-side pagination strategies for large table datasets in React, optimizing UI performance and enabling efficient handling of over 10,000 records with advanced search and filtering capabilities.",
+  "Authored comprehensive technical documentation (APIs, onboarding, architecture) across React/Java Spring Boot environments, reducing new developer ramp-up time by 30%.",
+  "Managed bug resolution using Jenkins for CI/CD in an Agile Scrum environment, contributing to a 35% decrease in reported issues across application instances."
+  ]
+    }
+
   ];
 
   const toggleExpand = (id: number) => {
